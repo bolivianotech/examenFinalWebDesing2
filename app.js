@@ -87,9 +87,9 @@ function validateInput(input) {
     } else if (input.type === 'email' && !isValidEmail(input.value)) {
         isValid = false;
         errorMessage = 'Ingrese un correo electrónico válido';
-    } else if (input.id === 'studentId' && !/^\d{10}$/.test(input.value)) {
+    } else if (input.id === 'studentId' && !/^\d{5,11}$/.test(input.value)) {
         isValid = false;
-        errorMessage = 'La matrícula debe tener 10 dígitos';
+        errorMessage = 'La identificación debe tener entre 5 y 11 dígitos';
     } else if (input.id === 'studentName' && input.value.trim().length < 3) {
         isValid = false;
         errorMessage = 'El nombre debe tener al menos 3 caracteres';
