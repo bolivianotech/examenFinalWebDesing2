@@ -15,15 +15,15 @@ const examQuestions = {
             type: 'multiple',
             question: '¿Cuáles de las siguientes son etiquetas HTML5 semánticas válidas?',
             options: [
-                { id: 'a', text: '<header>', correct: true },
-                { id: 'b', text: '<div>', correct: false },
-                { id: 'c', text: '<article>', correct: true },
-                { id: 'd', text: '<span>', correct: false },
-                { id: 'e', text: '<nav>', correct: true },
-                { id: 'f', text: '<section>', correct: true }
+                { id: 'a', text: '&lt;header&gt;', correct: true },
+                { id: 'b', text: '&lt;div&gt;', correct: false },
+                { id: 'c', text: '&lt;article&gt;', correct: true },
+                { id: 'd', text: '&lt;span&gt;', correct: false },
+                { id: 'e', text: '&lt;nav&gt;', correct: true },
+                { id: 'f', text: '&lt;section&gt;', correct: true }
             ],
             multipleCorrect: true,
-            explanation: 'Las etiquetas semánticas de HTML5 (<header>, <article>, <nav>, <section>) describen el significado del contenido. <div> y <span> son contenedores genéricos sin valor semántico.',
+            explanation: 'Las etiquetas semánticas de HTML5 (&lt;header&gt;, &lt;article&gt;, &lt;nav&gt;, &lt;section&gt;) describen el significado del contenido. &lt;div&gt; y &lt;span&gt; son contenedores genéricos sin valor semántico.',
             module: 'Módulo 1: Fundamentos HTML y CSS'
         },
         {
@@ -43,7 +43,7 @@ const examQuestions = {
         {
             id: 3,
             type: 'multiple',
-            question: 'Con `box-sizing: border-box`, si un elemento tiene `width: 200px`, `padding: 20px` y `border: 5px solid black`, ¿cuál será su ancho total visible?',
+            question: 'Con box-sizing: border-box, si un elemento tiene width: 200px, padding: 20px y border: 5px solid black, ¿cuál será su ancho total visible?',
             options: [
                 { id: 'a', text: '250px', correct: false },
                 { id: 'b', text: '200px', correct: true },
@@ -57,7 +57,7 @@ const examQuestions = {
         {
             id: 4,
             type: 'multiple',
-            question: '¿Cuáles son las características correctas de `position: absolute`? (Selecciona todas las correctas)',
+            question: '¿Cuáles son las características correctas de position: absolute? (Selecciona todas las correctas)',
             options: [
                 { id: 'a', text: 'El elemento sale del flujo normal del documento', correct: true },
                 { id: 'b', text: 'Se posiciona relativo al ancestro posicionado más cercano', correct: true },
@@ -164,11 +164,11 @@ const examQuestions = {
             type: 'dragdrop',
             question: 'Relaciona cada etiqueta HTML semántica con su uso correcto:',
             pairs: [
-                { item: '<header>', target: 'Encabezado de página o sección' },
-                { item: '<nav>', target: 'Navegación principal' },
-                { item: '<main>', target: 'Contenido principal (único)' },
-                { item: '<article>', target: 'Contenido independiente' },
-                { item: '<aside>', target: 'Contenido complementario' }
+                { item: '&lt;header&gt;', target: 'Encabezado de página o sección' },
+                { item: '&lt;nav&gt;', target: 'Navegación principal' },
+                { item: '&lt;main&gt;', target: 'Contenido principal (único)' },
+                { item: '&lt;article&gt;', target: 'Contenido independiente' },
+                { item: '&lt;aside&gt;', target: 'Contenido complementario' }
             ],
             module: 'Módulo 1: Fundamentos HTML y CSS'
         },
