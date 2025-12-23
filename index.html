@@ -1,1 +1,265 @@
-Hola!
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Examen Final - Diseño Web II - Universidad">
+    <title>Examen Final | Diseño Web II</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Material UI CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="exam-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <span class="material-icons logo-icon">school</span>
+                    <div class="logo-text">
+                        <h1>Diseño Web II</h1>
+                        <p>Examen Final</p>
+                    </div>
+                </div>
+                <div class="timer-section" id="timerSection">
+                    <span class="material-icons">timer</span>
+                    <span id="timer">00:00:00</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Registration Form -->
+        <section id="registrationSection" class="section registration-section">
+            <div class="card registration-card">
+                <div class="card-header">
+                    <span class="material-icons card-icon">person_add</span>
+                    <h2>Registro del Estudiante</h2>
+                    <p>Complete sus datos para iniciar el examen</p>
+                </div>
+                <form id="registrationForm" class="registration-form">
+                    <div class="form-group">
+                        <label for="studentName">
+                            <span class="material-icons">badge</span>
+                            Nombre Completo
+                        </label>
+                        <input type="text" id="studentName" name="studentName" required 
+                               placeholder="Ingrese su nombre completo" minlength="3">
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentId">
+                            <span class="material-icons">fingerprint</span>
+                            Número de Matrícula
+                        </label>
+                        <input type="text" id="studentId" name="studentId" required 
+                               placeholder="Ej: 2024001234" pattern="[0-9]{10}">
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentEmail">
+                            <span class="material-icons">email</span>
+                            Correo Electrónico
+                        </label>
+                        <input type="email" id="studentEmail" name="studentEmail" required 
+                               placeholder="correo@estudiante.edu">
+                        <span class="error-message"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-large">
+                        <span class="material-icons">play_arrow</span>
+                        Iniciar Examen
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Exam Section -->
+        <main id="examSection" class="section exam-section hidden">
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span id="progressText">Pregunta 1 de 20</span>
+                    <span id="scorePreview">Puntos: 0/100</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 5%"></div>
+                </div>
+                <div class="question-indicators" id="questionIndicators"></div>
+            </div>
+
+            <!-- Questions Container -->
+            <div id="questionsContainer" class="questions-container"></div>
+
+            <!-- Navigation -->
+            <div class="exam-navigation">
+                <button id="prevBtn" class="btn btn-secondary" disabled>
+                    <span class="material-icons">arrow_back</span>
+                    Anterior
+                </button>
+                <button id="nextBtn" class="btn btn-primary">
+                    Siguiente
+                    <span class="material-icons">arrow_forward</span>
+                </button>
+                <button id="submitBtn" class="btn btn-success hidden">
+                    <span class="material-icons">send</span>
+                    Enviar Examen
+                </button>
+            </div>
+        </main>
+
+        <!-- Results Section -->
+        <section id="resultsSection" class="section results-section hidden">
+            <div class="results-container">
+                <div class="results-header">
+                    <div class="results-icon" id="resultsIcon">
+                        <span class="material-icons">emoji_events</span>
+                    </div>
+                    <h2 id="resultsTitle">¡Examen Completado!</h2>
+                    <p id="resultsSubtitle">Has finalizado tu examen</p>
+                </div>
+                
+                <div class="score-display">
+                    <div class="score-circle" id="scoreCircle">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="score-bg" cx="50" cy="50" r="45"/>
+                            <circle class="score-progress" id="scoreProgress" cx="50" cy="50" r="45"/>
+                        </svg>
+                        <div class="score-value">
+                            <span id="finalScore">0</span>
+                            <span class="score-max">/100</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="material-icons">check_circle</span>
+                        <div class="stat-info">
+                            <span class="stat-value" id="correctCount">0</span>
+                            <span class="stat-label">Correctas</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-icons">cancel</span>
+                        <div class="stat-info">
+                            <span class="stat-value" id="incorrectCount">0</span>
+                            <span class="stat-label">Incorrectas</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-icons">schedule</span>
+                        <div class="stat-info">
+                            <span class="stat-value" id="timeSpent">00:00</span>
+                            <span class="stat-label">Tiempo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- File Upload Section -->
+                <div class="file-upload-section" id="fileUploadSection">
+                    <div class="upload-header">
+                        <span class="material-icons">cloud_upload</span>
+                        <h3>Subir Proyecto Final (Opcional)</h3>
+                        <p>Puedes adjuntar archivos de tu proyecto a Google Drive</p>
+                    </div>
+                    
+                    <div class="upload-drop-zone" id="uploadDropZone">
+                        <input type="file" id="fileInput" multiple accept=".zip,.rar,.pdf,.html,.css,.js,.png,.jpg,.jpeg" hidden>
+                        <div class="drop-zone-content">
+                            <span class="material-icons upload-icon">folder_open</span>
+                            <p class="drop-text">Arrastra archivos aquí o <button type="button" class="btn-link" id="browseBtn">busca en tu equipo</button></p>
+                            <p class="file-types">ZIP, RAR, PDF, HTML, CSS, JS, imágenes (máx. 10MB cada uno)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="uploaded-files" id="uploadedFilesList">
+                        <!-- Lista de archivos subidos aparecerá aquí -->
+                    </div>
+                    
+                    <div class="upload-actions" id="uploadActions" style="display: none;">
+                        <button class="btn btn-primary" id="uploadToGoogleBtn">
+                            <span class="material-icons">cloud_upload</span>
+                            Subir a Google Drive
+                        </button>
+                    </div>
+                    
+                    <div class="upload-status" id="uploadStatus"></div>
+                    
+                    <a href="https://drive.google.com/drive/folders/1UCQGKCRsLSXjKhHzgxgJEDYRjVgfp2k7?usp=sharing" 
+                       target="_blank" class="drive-link" id="driveLink">
+                        <span class="material-icons">folder_shared</span>
+                        Ver carpeta de entregas en Google Drive
+                    </a>
+                </div>
+
+                <div class="results-actions">
+                    <button class="btn btn-primary" id="reviewBtn">
+                        <span class="material-icons">visibility</span>
+                        Revisar Respuestas
+                    </button>
+                    <button class="btn btn-secondary" onclick="location.reload()">
+                        <span class="material-icons">refresh</span>
+                        Nuevo Examen
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Review Section -->
+        <section id="reviewSection" class="section review-section hidden">
+            <div class="review-header">
+                <h2><span class="material-icons">fact_check</span> Revisión del Examen</h2>
+                <button class="btn btn-secondary" id="backToResults">
+                    <span class="material-icons">arrow_back</span>
+                    Volver a Resultados
+                </button>
+            </div>
+            <div id="reviewContainer" class="review-container"></div>
+        </section>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-icon">
+                <span class="material-icons">warning</span>
+            </div>
+            <h3>¿Enviar Examen?</h3>
+            <p>Una vez enviado no podrás modificar tus respuestas.</p>
+            <div class="modal-questions-status" id="modalQuestionsStatus"></div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelSubmit">Cancelar</button>
+                <button class="btn btn-success" id="confirmSubmit">
+                    <span class="material-icons">send</span>
+                    Enviar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loader">
+            <div class="loader-spinner"></div>
+            <p>Enviando resultados...</p>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">
+        <span class="material-icons toast-icon"></span>
+        <span class="toast-message"></span>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
